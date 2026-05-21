@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurele — AI-Powered Hospitality</title>
+    <meta name="description" content="Never miss a booking again. Aurele gives your restaurant a professional AI receptionist that answers every call, books tables, and sends confirmations — 24/7.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #C5A572;
+            --gold-light: #D4BA8A;
+            --gold-bg: #FAF6EF;
+            --dark: #1A1A2E;
+            --dark-soft: #2D2D44;
+            --grey: #6B7280;
+            --grey-light: #F3F4F6;
+            --white: #FFFFFF;
+            --green: #16A34A;
+            --green-bg: #F0FDF4;
+            --red-soft: #FEE2E2;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            color: var(--dark);
+            background: var(--white);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── NAV ─────────────────────────────────────────── */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 100;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(197,165,114,0.15);
+            padding: 16px 0;
+            transition: box-shadow .3s;
+        }
+        nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
+        .nav-inner {
+            max-width: 1140px; margin: 0 auto; padding: 0 24px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px; font-weight: 700; color: var(--gold);
+            text-decoration: none; letter-spacing: -0.5px;
+        }
+        .nav-links { display: flex; gap: 32px; align-items: center; }
+        .nav-links a {
+            text-decoration: none; color: var(--grey); font-size: 14px;
+            font-weight: 500; transition: color .2s;
+        }
+        .nav-links a:hover { color: var(--gold); }
+        .nav-cta {
+            background: var(--gold); color: white !important;
+            padding: 10px 24px; border-radius: 8px; font-weight: 600;
+            transition: background .2s;
+        }
+        .nav-cta:hover { background: var(--gold-light); }
+
+        /* ── SECTIONS ────────────────────────────────────── */
+        section { padding: 100px 24px; }
+        .container { max-width: 1140px; margin: 0 auto; }
+        .section-tag {
+            display: inline-block; font-size: 12px; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 2px; color: var(--gold);
+            margin-bottom: 16px;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px; font-weight: 700; line-height: 1.2;
+            color: var(--dark); margin-bottom: 20px;
+        }
+        .section-subtitle {
+            font-size: 18px; color: var(--grey); max-width: 640px;
+            line-height: 1.7;
+        }
+        .text-center { text-align: center; }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+
+        /* ── HERO ────────────────────────────────────────── */
+        .hero {
+            padding: 160px 24px 120px;
+            background: linear-gradient(170deg, var(--white) 60%, var(--gold-bg) 100%);
+            text-align: center;
+        }
+        .hero .section-title { font-size: 52px; max-width: 800px; margin: 0 auto 24px; }
+        .hero .section-subtitle { max-width: 600px; margin: 0 auto 40px; }
+        .hero-cta {
+            display: inline-block; background: var(--gold); color: white;
+            padding: 16px 40px; border-radius: 10px; font-size: 16px;
+            font-weight: 600; text-decoration: none; transition: all .2s;
+            box-shadow: 0 4px 14px rgba(197,165,114,0.35);
+        }
+        .hero-cta:hover {
+            background: var(--gold-light);
+            box-shadow: 0 6px 20px rgba(197,165,114,0.45);
+            transform: translateY(-2px);
+        }
+        .hero-note {
+            margin-top: 16px; font-size: 13px; color: var(--grey);
+        }
+
+        /* ── PAIN POINTS ─────────────────────────────────── */
+        .pain-section { background: var(--white); }
+        .pain-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 24px; margin-top: 48px;
+        }
+        .pain-card {
+            background: #FFFBF5; border: 1px solid rgba(197,165,114,0.2);
+            border-radius: 12px; padding: 32px;
+            transition: transform .2s, box-shadow .2s;
+        }
+        .pain-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+        }
+        .pain-icon { font-size: 28px; margin-bottom: 16px; }
+        .pain-card h3 {
+            font-size: 16px; font-weight: 700; margin-bottom: 10px;
+            color: var(--dark);
+        }
+        .pain-card p { font-size: 14px; color: var(--grey); line-height: 1.6; }
+
+        /* ── SOLUTION ────────────────────────────────────── */
+        .solution-section { background: var(--gold-bg); }
+        .solution-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 24px; margin-top: 48px;
+        }
+        .solution-card {
+            background: white; border-radius: 12px; padding: 32px;
+            border: 1px solid rgba(197,165,114,0.15);
+            transition: transform .2s;
+        }
+        .solution-card:hover { transform: translateY(-4px); }
+        .solution-card .check {
+            width: 32px; height: 32px; background: var(--green-bg);
+            border-radius: 50%; display: flex; align-items: center;
+            justify-content: center; margin-bottom: 16px; color: var(--green);
+            font-weight: 700; font-size: 16px;
+        }
+        .solution-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 10px; }
+        .solution-card p { font-size: 14px; color: var(--grey); line-height: 1.6; }
+
+        /* ── HOW IT WORKS ────────────────────────────────── */
+        .how-section { background: var(--white); }
+        .steps {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 48px; margin-top: 60px;
+        }
+        .step { text-align: center; }
+        .step-num {
+            width: 56px; height: 56px; border-radius: 50%;
+            background: var(--gold); color: white; font-size: 22px;
+            font-weight: 700; display: flex; align-items: center;
+            justify-content: center; margin: 0 auto 20px;
+        }
+        .step h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+        .step p { font-size: 14px; color: var(--grey); line-height: 1.6; }
+
+        /* ── COMPARISON TABLE ────────────────────────────── */
+        .compare-section { background: var(--grey-light); }
+        .compare-table {
+            width: 100%; max-width: 700px; margin: 48px auto 0;
+            border-collapse: collapse; background: white;
+            border-radius: 12px; overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+        }
+        .compare-table th {
+            padding: 16px 24px; text-align: left; font-size: 14px;
+            background: var(--dark); color: white;
+        }
+        .compare-table th:last-child { color: var(--gold-light); }
+        .compare-table td {
+            padding: 14px 24px; font-size: 14px; border-bottom: 1px solid #f0f0f0;
+        }
+        .compare-table tr:last-child td { border-bottom: none; }
+        .compare-table td:first-child { font-weight: 600; }
+        .compare-table .yes { color: var(--green); font-weight: 600; }
+        .compare-table .no { color: #DC2626; font-weight: 600; }
+
+        /* ── PRICING ─────────────────────────────────────── */
+        .pricing-section { background: var(--white); }
+        .pricing-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 24px; margin-top: 48px; align-items: start;
+        }
+        .pricing-card {
+            background: white; border: 2px solid #E5E7EB;
+            border-radius: 16px; padding: 40px 32px;
+            transition: transform .2s, box-shadow .2s;
+            position: relative;
+        }
+        .pricing-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+        }
+        .pricing-card.featured {
+            border-color: var(--gold);
+            box-shadow: 0 8px 30px rgba(197,165,114,0.2);
+        }
+        .pricing-badge {
+            position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+            background: var(--gold); color: white; padding: 6px 20px;
+            border-radius: 20px; font-size: 12px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1px;
+        }
+        .pricing-tier {
+            font-size: 14px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 1.5px; color: var(--gold); margin-bottom: 8px;
+        }
+        .pricing-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px; font-weight: 700; margin-bottom: 20px;
+        }
+        .pricing-price {
+            font-size: 48px; font-weight: 700; color: var(--dark);
+            line-height: 1;
+        }
+        .pricing-price span { font-size: 16px; color: var(--grey); font-weight: 400; }
+        .pricing-setup {
+            font-size: 13px; color: var(--grey); margin-top: 6px; margin-bottom: 24px;
+        }
+        .pricing-features { list-style: none; margin-bottom: 32px; }
+        .pricing-features li {
+            padding: 8px 0; font-size: 14px; color: var(--dark-soft);
+            border-bottom: 1px solid #F3F4F6;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .pricing-features li::before {
+            content: "\2713"; color: var(--gold); font-weight: 700;
+            font-size: 14px; flex-shrink: 0;
+        }
+        .pricing-cta {
+            display: block; text-align: center; padding: 14px 24px;
+            border-radius: 10px; font-weight: 600; font-size: 15px;
+            text-decoration: none; transition: all .2s;
+        }
+        .pricing-cta.primary {
+            background: var(--gold); color: white;
+            box-shadow: 0 4px 14px rgba(197,165,114,0.3);
+        }
+        .pricing-cta.primary:hover {
+            background: var(--gold-light); transform: translateY(-2px);
+        }
+        .pricing-cta.secondary {
+            background: var(--gold-bg); color: var(--gold);
+            border: 1px solid rgba(197,165,114,0.3);
+        }
+        .pricing-cta.secondary:hover {
+            background: var(--gold); color: white;
+        }
+        .pricing-cta.outline {
+            background: transparent; color: var(--dark);
+            border: 1px solid #D1D5DB;
+        }
+        .pricing-cta.outline:hover {
+            border-color: var(--gold); color: var(--gold);
+        }
+        .pricing-note {
+            text-align: center; margin-top: 24px; font-size: 13px; color: var(--grey);
+        }
+        .founding-badge {
+            display: inline-block; background: var(--green-bg); color: var(--green);
+            padding: 4px 12px; border-radius: 20px; font-size: 12px;
+            font-weight: 600; margin-bottom: 12px;
+        }
+
+        /* ── TESTIMONIALS ────────────────────────────────── */
+        .testimonial-section { background: var(--gold-bg); }
+        .testimonials {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 24px; margin-top: 48px;
+        }
+        .testimonial-card {
+            background: white; border-radius: 12px; padding: 32px;
+            border: 1px solid rgba(197,165,114,0.15);
+        }
+        .testimonial-card .stars { color: var(--gold); font-size: 16px; margin-bottom: 16px; }
+        .testimonial-card p {
+            font-size: 15px; color: var(--dark-soft); line-height: 1.7;
+            font-style: italic; margin-bottom: 20px;
+        }
+        .testimonial-author { font-size: 14px; font-weight: 600; color: var(--dark); }
+        .testimonial-role { font-size: 13px; color: var(--grey); }
+
+        /* ── FAQ ──────────────────────────────────────────── */
+        .faq-section { background: var(--white); }
+        .faq-list { max-width: 700px; margin: 48px auto 0; }
+        .faq-item {
+            border-bottom: 1px solid #E5E7EB; padding: 24px 0;
+            cursor: pointer;
+        }
+        .faq-q {
+            display: flex; justify-content: space-between; align-items: center;
+            font-size: 16px; font-weight: 600; color: var(--dark);
+        }
+        .faq-q::after {
+            content: "+"; font-size: 22px; color: var(--gold);
+            font-weight: 300; transition: transform .2s;
+        }
+        .faq-item.open .faq-q::after { content: "\2212"; }
+        .faq-a {
+            max-height: 0; overflow: hidden; transition: max-height .3s ease;
+            font-size: 15px; color: var(--grey); line-height: 1.7;
+        }
+        .faq-item.open .faq-a { max-height: 200px; padding-top: 12px; }
+
+        /* ── FINAL CTA ───────────────────────────────────── */
+        .final-cta-section {
+            background: var(--dark); color: white;
+            text-align: center; padding: 100px 24px;
+        }
+        .final-cta-section .section-title { color: white; }
+        .final-cta-section .section-subtitle { color: rgba(255,255,255,0.7); }
+        .final-cta-section .hero-cta { margin-top: 32px; }
+
+        /* ── FOOTER ──────────────────────────────────────── */
+        footer {
+            background: var(--dark); color: rgba(255,255,255,0.5);
+            padding: 40px 24px; text-align: center; font-size: 13px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+        footer a { color: var(--gold); text-decoration: none; }
+
+        /* ── RESPONSIVE ──────────────────────────────────── */
+        @media (max-width: 768px) {
+            .hero .section-title { font-size: 32px; }
+            .section-title { font-size: 30px; }
+            .pain-grid, .solution-grid, .steps,
+            .pricing-grid, .testimonials { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .pricing-card.featured { order: -1; }
+        }
+
+        /* ── ANIMATIONS ──────────────────────────────────── */
+        .fade-in {
+            opacity: 0; transform: translateY(20px);
+            transition: opacity .6s ease, transform .6s ease;
+        }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+    <div class="nav-inner">
+        <a href="#" class="logo">Aurele</a>
+        <div class="nav-links">
+            <a href="#how">How It Works</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#faq">FAQ</a>
+            <a href="#cta" class="nav-cta">Book a Demo</a>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="container">
+        <span class="section-tag">AI-Powered Hospitality</span>
+        <h1 class="section-title fade-in">Never Miss a Booking Again</h1>
+        <p class="section-subtitle fade-in">
+            Your restaurant's AI receptionist answers every call, books tables,
+            and sends confirmations — 24 hours a day, 7 days a week.
+        </p>
+        <a href="#cta" class="hero-cta fade-in">Book a Free Demo</a>
+        <p class="hero-note fade-in">No commitment. See it in action first.</p>
+    </div>
+</section>
+
+<!-- PAIN POINTS -->
+<section class="pain-section">
+    <div class="container">
+        <div class="text-center">
+            <span class="section-tag">The Problem</span>
+            <h2 class="section-title fade-in">Every Missed Call Is a Lost Customer</h2>
+            <p class="section-subtitle mx-auto fade-in">
+                Restaurants lose thousands in revenue every month to unanswered phone calls.
+                Here's what's really happening:
+            </p>
+        </div>
+        <div class="pain-grid">
+            <div class="pain-card fade-in">
+                <h3>Calls Go Unanswered</h3>
+                <p>During busy service, no one picks up. That's 5-15 lost bookings per day — each worth &pound;50-200 in revenue.</p>
+            </div>
+            <div class="pain-card fade-in">
+                <h3>Staff Cost a Fortune</h3>
+                <p>A full-time receptionist costs &pound;22,000-28,000/year. Most restaurants can't justify it, so the phone sits there ringing.</p>
+            </div>
+            <div class="pain-card fade-in">
+                <h3>Closed Hours = Zero Bookings</h3>
+                <p>60% of booking calls happen outside operating hours. Voicemail doesn't book tables — it loses customers.</p>
+            </div>
+            <div class="pain-card fade-in">
+                <h3>Customers Don't Wait</h3>
+                <p>If you don't answer in 3 rings, they call the next restaurant. You never know what you lost.</p>
+            </div>
+            <div class="pain-card fade-in">
+                <h3>Booking Errors Pile Up</h3>
+                <p>Wrong dates, wrong times, missed dietary notes. Handwritten bookings taken mid-rush lead to no-shows and complaints.</p>
+            </div>
+            <div class="pain-card fade-in">
+                <h3>Staff Are Stretched Thin</h3>
+                <p>Your team is cooking, serving, and managing. Answering the phone pulls them away from the guests who are already there.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SOLUTION -->
+<section class="solution-section">
+    <div class="container">
+        <div class="text-center">
+            <span class="section-tag">The Solution</span>
+            <h2 class="section-title fade-in">Meet Your AI Receptionist</h2>
+            <p class="section-subtitle mx-auto fade-in">
+                A professional, natural-sounding voice assistant that handles your phone calls
+                so your team can focus on what matters — the guests in front of them.
+            </p>
+        </div>
+        <div class="solution-grid">
+            <div class="solution-card fade-in">
+                <div class="check">&#10003;</div>
+                <h3>Answers Every Call</h3>
+                <p>24/7, 365 days a year. No hold music, no voicemail, no missed opportunities. Every caller speaks to someone.</p>
+            </div>
+            <div class="solution-card fade-in">
+                <div class="check">&#10003;</div>
+                <h3>Books Tables Instantly</h3>
+                <p>Checks your live diary, finds available slots, and creates the booking — all while the caller is on the phone.</p>
+            </div>
+            <div class="solution-card fade-in">
+                <div class="check">&#10003;</div>
+                <h3>Sends Confirmations</h3>
+                <p>Every guest receives an email confirmation with their booking details within seconds of hanging up.</p>
+            </div>
+            <div class="solution-card fade-in">
+                <div class="check">&#10003;</div>
+                <h3>Sounds Completely Natural</h3>
+                <p>Not a robot. A warm, professional voice that represents your restaurant exactly the way you'd want.</p>
+            </div>
+            <div class="solution-card fade-in">
+                <div class="check">&#10003;</div>
+                <h3>Knows Your Restaurant</h3>
+                <p>Trained on your menu, hours, policies, and special requests. Answers questions just like your best staff member would.</p>
+            </div>
+            <div class="solution-card fade-in">
+                <div class="check">&#10003;</div>
+                <h3>Works With Your Diary</h3>
+                <p>Integrates directly with your existing booking system. No double-entry, no conflicts, no missed slots.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how">
+    <div class="container">
+        <div class="text-center">
+            <span class="section-tag">How It Works</span>
+            <h2 class="section-title fade-in">Live in 48 Hours. Three Simple Steps.</h2>
+        </div>
+        <div class="steps">
+            <div class="step fade-in">
+                <div class="step-num">1</div>
+                <h3>Tell Us About Your Restaurant</h3>
+                <p>Share your details — hours, booking rules, menu highlights, and how you'd like your receptionist to sound. We handle everything else.</p>
+            </div>
+            <div class="step fade-in">
+                <div class="step-num">2</div>
+                <h3>We Build Your AI Receptionist</h3>
+                <p>We create a custom AI assistant trained specifically for your restaurant, connect it to your diary, and test everything thoroughly.</p>
+            </div>
+            <div class="step fade-in">
+                <div class="step-num">3</div>
+                <h3>Go Live &amp; Start Booking</h3>
+                <p>Forward your calls to your new AI receptionist. She picks up instantly, books tables, and sends confirmations. You focus on delivering great service.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="compare-section">
+    <div class="container">
+        <div class="text-center">
+            <span class="section-tag">Why Switch</span>
+            <h2 class="section-title fade-in">Human Receptionist vs Aurele</h2>
+        </div>
+        <table class="compare-table fade-in">
+            <thead>
+                <tr>
+                    <th>Feature</th>
+                    <th>Human Receptionist</th>
+                    <th>Aurele AI</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Available 24/7</td><td class="no">No</td><td class="yes">Yes</td></tr>
+                <tr><td>Never calls in sick</td><td class="no">No</td><td class="yes">Yes</td></tr>
+                <tr><td>Handles multiple calls at once</td><td class="no">No</td><td class="yes">Yes</td></tr>
+                <tr><td>Instant booking confirmations</td><td class="no">Rarely</td><td class="yes">Every time</td></tr>
+                <tr><td>Zero booking errors</td><td class="no">Unlikely</td><td class="yes">Yes</td></tr>
+                <tr><td>Cost per month</td><td>&pound;1,800-2,300</td><td><span class="yes">From &pound;397</span></td></tr>
+                <tr><td>Training time</td><td>2-4 weeks</td><td><span class="yes">48 hours</span></td></tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section" id="pricing">
+    <div class="container">
+        <div class="text-center">
+            <span class="section-tag">Pricing</span>
+            <h2 class="section-title fade-in">Simple, Transparent Pricing</h2>
+            <p class="section-subtitle mx-auto fade-in">
+                Less than the cost of one missed booking per day. Cancel anytime.
+            </p>
+        </div>
+        <div class="pricing-grid">
+
+            <!-- STARTER -->
+            <div class="pricing-card fade-in">
+                <div class="pricing-tier">Starter</div>
+                <div class="pricing-name">Essential</div>
+                <div class="founding-badge">Founding Partner Price</div>
+                <div class="pricing-price">&pound;297<span>/month</span></div>
+                <div class="pricing-setup">&pound;299 one-time setup &middot; Regular price &pound;397/mo</div>
+                <ul class="pricing-features">
+                    <li>AI receptionist — custom voice &amp; personality</li>
+                    <li>24/7 call answering</li>
+                    <li>Live diary integration</li>
+                    <li>Instant reservation booking</li>
+                    <li>Email confirmations to every guest</li>
+                    <li>Missed-call recovery</li>
+                    <li>Monthly call summary</li>
+                    <li>Direct email support</li>
+                </ul>
+                <a href="#cta" class="pricing-cta primary">Get Started</a>
+            </div>
+
+            <!-- GROWTH -->
+            <div class="pricing-card featured fade-in">
+                <div class="pricing-badge">Most Popular</div>
+                <div class="pricing-tier">Growth</div>
+                <div class="pricing-name">Professional</div>
+                <div class="pricing-price">&pound;697<span>/month</span></div>
+                <div class="pricing-setup">&pound;499 one-time setup</div>
+                <ul class="pricing-features">
+                    <li>Everything in Starter</li>
+                    <li>Guest CRM &amp; booking history</li>
+                    <li>Automated pre-visit reminders</li>
+                    <li>Post-visit review requests</li>
+                    <li>Menu &amp; FAQ automation</li>
+                    <li>Advanced analytics dashboard</li>
+                    <li>Priority support</li>
+                    <li>Monthly performance report</li>
+                </ul>
+                <a href="#cta" class="pricing-cta secondary">Book a Demo</a>
+                <p style="text-align:center; margin-top:10px; font-size:12px; color:var(--grey);">
+                    Launching soon — join the early access list
+                </p>
+            </div>
+
+            <!-- PRO -->
+            <div class="pricing-card fade-in">
+                <div class="pricing-tier">Pro</div>
+                <div class="pricing-name">Enterprise</div>
+                <div class="pricing-price">&pound;1,497<span>/month</span></div>
+                <div class="pricing-setup">&pound;999 one-time setup</div>
+                <ul class="pricing-features">
+                    <li>Everything in Growth</li>
+                    <li>Multi-location support</li>
+                    <li>Custom AI workflows</li>
+                    <li>Reservation system integration</li>
+                    <li>VIP onboarding experience</li>
+                    <li>Dedicated account manager</li>
+                    <li>Monthly optimisation calls</li>
+                    <li>Custom integrations</li>
+                </ul>
+                <a href="#cta" class="pricing-cta outline">Contact Us</a>
+            </div>
+        </div>
+        <p class="pricing-note fade-in">
+            All plans include generous call volumes. No hidden costs. Fair usage policy applies.
+        </p>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonial-section">
+    <div class="container">
+        <div class="text-center">
+            <span class="section-tag">Early Results</span>
+            <h2 class="section-title fade-in">What Restaurant Owners Are Saying</h2>
+        </div>
+        <div class="testimonials">
+            <div class="testimonial-card fade-in">
+                <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p>"We were missing 10-15 calls a day during service. Now every single one gets answered. It's like having a receptionist who never takes a break."</p>
+                <div class="testimonial-author">Restaurant Owner</div>
+                <div class="testimonial-role">Fine Dining, London</div>
+            </div>
+            <div class="testimonial-card fade-in">
+                <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p>"Guests genuinely can't tell it's AI. They compliment us on how helpful our receptionist is. That says everything."</p>
+                <div class="testimonial-author">General Manager</div>
+                <div class="testimonial-role">Italian Restaurant, Manchester</div>
+            </div>
+            <div class="testimonial-card fade-in">
+                <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p>"The ROI was immediate. We recovered the monthly cost in the first week just from bookings we would have missed."</p>
+                <div class="testimonial-author">Restaurant Owner</div>
+                <div class="testimonial-role">Brasserie, Birmingham</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+    <div class="container">
+        <div class="text-center">
+            <span class="section-tag">Questions</span>
+            <h2 class="section-title fade-in">Frequently Asked Questions</h2>
+        </div>
+        <div class="faq-list">
+            <div class="faq-item fade-in">
+                <div class="faq-q">Does it really sound human?</div>
+                <div class="faq-a">Yes. We use the latest AI voice technology with a natural British accent. Your guests won't know they're speaking to an AI unless you tell them. We'll let you hear it on your demo call.</div>
+            </div>
+            <div class="faq-item fade-in">
+                <div class="faq-q">How does it connect to my booking diary?</div>
+                <div class="faq-a">We integrate directly with Google Calendar, and we're adding support for OpenTable, ResDiary, and other platforms. Your AI receptionist checks live availability and creates real bookings — no double-entry needed.</div>
+            </div>
+            <div class="faq-item fade-in">
+                <div class="faq-q">What happens if the AI can't handle a call?</div>
+                <div class="faq-a">If a call requires a human — a complex complaint, a private event enquiry, or something unusual — the AI takes the caller's details and sends you an instant alert so you can call them back. Nothing falls through the cracks.</div>
+            </div>
+            <div class="faq-item fade-in">
+                <div class="faq-q">Can I customise how the AI speaks and what it says?</div>
+                <div class="faq-a">Absolutely. You choose the name, voice, tone, and personality. We train the AI on your specific menu, policies, opening hours, and any special instructions. It represents your restaurant, not ours.</div>
+            </div>
+            <div class="faq-item fade-in">
+                <div class="faq-q">How long does setup take?</div>
+                <div class="faq-a">Most restaurants are live within 48 hours. We handle everything — you just fill in a short onboarding form with your restaurant details, and we do the rest.</div>
+            </div>
+            <div class="faq-item fade-in">
+                <div class="faq-q">Is there a contract or minimum commitment?</div>
+                <div class="faq-a">No long-term contracts. Pay monthly, cancel anytime. We believe you'll stay because the results speak for themselves, not because you're locked in.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta-section" id="cta">
+    <div class="container">
+        <span class="section-tag" style="color: var(--gold);">Ready?</span>
+        <h2 class="section-title fade-in">Stop Losing Bookings Tonight</h2>
+        <p class="section-subtitle mx-auto fade-in">
+            Book a free 15-minute demo. We'll show you exactly how your
+            AI receptionist will sound, and you'll hear her book a real table — live.
+        </p>
+        <a href="mailto:hello@aurele.ai?subject=Demo%20Request" class="hero-cta fade-in">Book Your Free Demo</a>
+        <p class="hero-note fade-in" style="color: rgba(255,255,255,0.5);">
+            No payment required. No commitment. Just results.
+        </p>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+        <p style="margin-bottom: 8px;">
+            <a href="#" class="logo" style="font-size: 18px;">Aurele</a>
+        </p>
+        <p>&copy; 2026 Aurele. AI-Powered Hospitality. All rights reserved.</p>
+        <p style="margin-top: 8px;">
+            <a href="mailto:hello@aurele.ai">hello@aurele.ai</a>
+        </p>
+    </div>
+</footer>
+
+<script>
+    // Scroll animation
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Nav shadow on scroll
+    window.addEventListener('scroll', () => {
+        document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-item').forEach(item => {
+        item.querySelector('.faq-q').addEventListener('click', () => {
+            item.classList.toggle('open');
+        });
+    });
+</script>
+
+</body>
+</html>
