@@ -512,7 +512,7 @@
                 <tr><td>Handles multiple calls at once</td><td class="no">No</td><td class="yes">Yes</td></tr>
                 <tr><td>Instant booking confirmations</td><td class="no">Rarely</td><td class="yes">Every time</td></tr>
                 <tr><td>Zero booking errors</td><td class="no">Unlikely</td><td class="yes">Yes</td></tr>
-                <tr><td>Cost per month</td><td>&pound;1,800-2,300</td><td><span class="yes">From &pound;397</span></td></tr>
+                <tr><td>Cost per month</td><td>&pound;1,800-2,300</td><td><span class="yes">From &pound;297</span></td></tr>
                 <tr><td>Training time</td><td>2-4 weeks</td><td><span class="yes">48 hours</span></td></tr>
             </tbody>
         </table>
@@ -535,9 +535,10 @@
             <div class="pricing-card fade-in">
                 <div class="pricing-tier">Starter</div>
                 <div class="pricing-name">Essential</div>
-                <div class="founding-badge">Founding Partner Price</div>
+                <div class="founding-badge">Founding Partner Rate</div>
                 <div class="pricing-price">&pound;297<span>/month</span></div>
-                <div class="pricing-setup">&pound;299 one-time setup &middot; Regular price &pound;397/mo</div>
+                <div class="pricing-setup" style="margin-bottom: 8px;"><span style="text-decoration: line-through; color: #999;">&pound;397/month</span> &middot; &pound;299 one-time setup</div>
+                <div style="font-size: 12px; font-weight: 600; color: #DC2626; margin-bottom: 24px;">Only available to our first 10 restaurants</div>
                 <ul class="pricing-features">
                     <li>AI receptionist — custom voice &amp; personality</li>
                     <li>24/7 call answering</li>
@@ -568,10 +569,10 @@
                     <li>Priority support</li>
                     <li>Monthly performance report</li>
                 </ul>
-                <a href="https://cal.com/oussamacopy-tdrbpw/book-a-demo" target="_blank" class="pricing-cta secondary">Book a Demo</a>
-                <p style="text-align:center; margin-top:10px; font-size:12px; color:var(--grey);">
-                    Launching soon — join the early access list
-                </p>
+                <div style="display:flex; gap:8px; margin-top:4px;">
+                    <input type="email" placeholder="Enter your email for early access" style="flex:1; padding:12px 16px; border:1px solid #D1D5DB; border-radius:8px; font-size:14px; font-family:inherit; outline:none;">
+                    <button onclick="this.parentElement.innerHTML='<p style=\'text-align:center;color:var(--green);font-weight:600;padding:12px 0;\'>You\'re on the list!</p>';" style="background:var(--gold); color:white; border:none; padding:12px 20px; border-radius:8px; font-size:14px; font-weight:600; cursor:pointer; white-space:nowrap;">Notify Me</button>
+                </div>
             </div>
 
             <!-- PRO -->
@@ -590,7 +591,10 @@
                     <li>Monthly optimisation calls</li>
                     <li>Custom integrations</li>
                 </ul>
-                <a href="https://cal.com/oussamacopy-tdrbpw/book-a-demo" target="_blank" class="pricing-cta outline">Contact Us</a>
+                <div style="display:flex; gap:8px; margin-top:4px;">
+                    <input type="email" placeholder="Enter your email for early access" style="flex:1; padding:12px 16px; border:1px solid #D1D5DB; border-radius:8px; font-size:14px; font-family:inherit; outline:none;">
+                    <button onclick="this.parentElement.innerHTML='<p style=\'text-align:center;color:var(--green);font-weight:600;padding:12px 0;\'>You\'re on the list!</p>';" style="background:var(--gold); color:white; border:none; padding:12px 20px; border-radius:8px; font-size:14px; font-weight:600; cursor:pointer; white-space:nowrap;">Notify Me</button>
+                </div>
             </div>
         </div>
         <p class="pricing-note fade-in">
@@ -599,32 +603,36 @@
     </div>
 </section>
 
-<!-- TESTIMONIALS -->
+<!-- FOUNDING PARTNERS -->
 <section class="testimonial-section">
     <div class="container">
         <div class="text-center">
-            <span class="section-tag">Early Results</span>
-            <h2 class="section-title fade-in">What Restaurant Owners Are Saying</h2>
+            <span class="section-tag">Limited Opportunity</span>
+            <h2 class="section-title fade-in">Join Our Founding Partners</h2>
+            <p class="section-subtitle mx-auto fade-in">
+                We are onboarding our first London restaurants at a special founding rate.
+                Founding partners get priority support, locked-in pricing, and direct input into the product roadmap.
+            </p>
         </div>
-        <div class="testimonials">
-            <div class="testimonial-card fade-in">
-                <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                <p>"We were missing 10-15 calls a day during service. Now every single one gets answered. It's like having a receptionist who never takes a break."</p>
-                <div class="testimonial-author">Restaurant Owner</div>
-                <div class="testimonial-role">Fine Dining, London</div>
+        <div class="testimonials" style="grid-template-columns: repeat(3, 1fr);">
+            <div class="testimonial-card fade-in" style="text-align: center;">
+                <div style="font-size: 32px; margin-bottom: 12px;">&#128274;</div>
+                <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 8px;">Locked-In Pricing</h3>
+                <p style="font-style: normal;">Your founding rate stays the same — even as we grow and prices increase for new customers.</p>
             </div>
-            <div class="testimonial-card fade-in">
-                <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                <p>"Guests genuinely can't tell it's AI. They compliment us on how helpful our receptionist is. That says everything."</p>
-                <div class="testimonial-author">General Manager</div>
-                <div class="testimonial-role">Italian Restaurant, Manchester</div>
+            <div class="testimonial-card fade-in" style="text-align: center;">
+                <div style="font-size: 32px; margin-bottom: 12px;">&#9889;</div>
+                <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 8px;">Priority Support</h3>
+                <p style="font-style: normal;">Founding partners get direct access to our team. We treat your restaurant like our own.</p>
             </div>
-            <div class="testimonial-card fade-in">
-                <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                <p>"The ROI was immediate. We recovered the monthly cost in the first week just from bookings we would have missed."</p>
-                <div class="testimonial-author">Restaurant Owner</div>
-                <div class="testimonial-role">Brasserie, Birmingham</div>
+            <div class="testimonial-card fade-in" style="text-align: center;">
+                <div style="font-size: 32px; margin-bottom: 12px;">&#128221;</div>
+                <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 8px;">Shape the Product</h3>
+                <p style="font-style: normal;">Tell us what features matter most. Founding partners have direct input into our roadmap.</p>
             </div>
+        </div>
+        <div class="text-center" style="margin-top: 40px;">
+            <a href="https://cal.com/oussamacopy-tdrbpw/book-a-demo" target="_blank" class="hero-cta fade-in">Claim Your Founding Rate</a>
         </div>
     </div>
 </section>
@@ -689,7 +697,7 @@
         </p>
         <p>&copy; 2026 Aurele. AI-Powered Hospitality. All rights reserved.</p>
         <p style="margin-top: 8px;">
-            <a href="mailto:hello@aurele.ai">hello@aurele.ai</a>
+            <a href="mailto:hello@aurele-ai.com">hello@aurele-ai.com</a>
         </p>
     </div>
 </footer>
